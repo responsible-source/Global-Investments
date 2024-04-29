@@ -17,6 +17,7 @@ module.exports = {
         Green: '#01bf71',
         bgTrans: '#232a34',
         Red: '#FF0000',
+        Grey: '#E8E9EB'
       },
       fontFamily:{
         Encode:['Encode Sans Expanded']

@@ -2,10 +2,10 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='bg-Green'>
-        <div className='wrapper text-darkBlack px-10 md:px-20 pt-5 text-[18px] font-semibold font-Encode'>
+    <div className='bg-darkBlack'>
+        <div className='wrapper text-gray-50 px-5 pt-10 text-[14px] font-semibold font-Encode'>
             <div className='pb-3'>
-                <h1> Copyright &copy; 2024 Global Tradez.</h1>
+                <h1> Copyright &copy; 2002 Global Tradez.</h1>
             </div>
 
             <div className='leading-7 pb-5'>

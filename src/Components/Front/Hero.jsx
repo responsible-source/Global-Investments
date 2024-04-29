@@ -15,13 +15,13 @@ const Hero = () => {
     }
   return (
     
-    <div className='container w-100% h-500px relative'>
-        <div className='top-0 right-0 left-0 bottom-0 w-100% w-full h-[750px] md:h-[700px] '>
-        <video src={VideoBg} autoPlay loop muted className='object-cover object-center w-full h-full' />
+    <div className='relative w-[100%] h-auto'>
+        <div className='top-0 right-0 left-0 bottom-0 w-100% w-[100%] h-[750px] md:h-[700px] '>
+        <video src={VideoBg} autoPlay loop muted className='object-cover object-center w-[100%] h-full' />
         </div>
        
         
-        <div className='absolute top-0 left-0 w-full h-full flex flex-col md:flex-row items-center justify-center md:px-20 px-10'>
+        <div className='absolute top-0 left-0 w-[100%] h-full flex flex-col md:flex-row items-center justify-center md:px-20 px-10'>
             <div className='text-white font-Encode'>
             <h1 className='text-2xl md:text-3xl'>BINARY OPTIONS, CFDs & FOREX TRADING MADE EASY</h1>
             <p className='text-1.8xl pt-3'>The Simplest and Most Powerful Trading Platform</p>

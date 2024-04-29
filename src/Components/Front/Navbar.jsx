@@ -1,4 +1,4 @@
-
+import React from 'react'
 import { List,Globe} from '@phosphor-icons/react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
@@ -6,7 +6,8 @@ import './Navbar.css'
 const Navbar = ({toggle}) => {
   
   return (
-    <nav className='container bg-darkBlack flex items-center justify-between text-white md:px-20 px-10 p-5'>
+
+    <nav className=' bg-darkBlack flex items-center justify-between text-white md:px-20 px-10 p-5'>
       <Link className='text-2xl font-Encode flex'><Globe size={28}/>Global Tradez</Link>
       <button className='nav-btn'>
           <List onClick={toggle} size={32}/>

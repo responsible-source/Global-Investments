@@ -20,7 +20,7 @@ const Testimonials = () => {
         slidesToScroll: 1,
     };
   return (
-    <div className='container px-10 md:px-20 mt-20 bg-darkBlack h-[800px] md:h-[600px] w-[100%]'>
+    <div className='px-10 md:px-20 mt-20 bg-darkBlack h-[800px] md:h-[600px] w-[100%]'>
         <h1 className='text-center text-Green text-[30px] font-Encode pt-10' >What Our Clients Are Saying...</h1>
         <div className='card-wrapper grid grid-cols-2 gap-10  mt-20 w-[600px] md:w-[2000px] justify-center items-center mx-auto px-[50px] md:px-[100px]'> 
         <Slider {...settings}>

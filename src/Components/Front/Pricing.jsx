@@ -4,7 +4,7 @@ import { CurrencyBtc, Check, Bank, CurrencyCircleDollar, Warehouse } from '@phos
 
 const Pricing = () => {
   return (
-    <div className='container mt-12 px-10 md:px-20 mb-12'>
+    <div className='mt-12 px-10 md:px-20 mb-12'>
     <h3 className='text-center text-Green text-[40px] font-Encode'>Investment Plans</h3>
         <div className='card-wrapper mt-9 grid md:grid-cols-3 '>
             <div className='card flex flex-col  items-center justify-center mx-auto border-4 border-Green rounded-lg mt-5 px-5 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 '>

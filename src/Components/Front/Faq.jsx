@@ -3,7 +3,7 @@ import { Plus } from '@phosphor-icons/react';
 
 const Faq = ({toggle,isOpen }) => {
   return (
-    <div className='container px-10 md:px-20  bg-darkBlack'>
+    <div className='px-10 md:px-20  bg-darkBlack'>
         <h1 className='text-center text-Green font-bold font-Encode text-[40px] pt-[30px] '>FAQ</h1>
         <div className='wrapper py-[60px] '>
             <div className='card text-white border-2 border-Green mb-6'>

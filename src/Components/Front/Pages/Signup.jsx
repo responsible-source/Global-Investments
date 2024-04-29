@@ -3,16 +3,34 @@ import { useState } from 'react'
 import { Globe } from '@phosphor-icons/react/dist/ssr'
 import { Link } from 'react-router-dom'
 import Forminput from '../Forminput'
+import { signUp } from '../../../apis'
+import axios from 'axios'
 
 
-const Signup = () => {
+const  Signup = () => {
 
+  const handleSubmit = async (e) =>{
+    try{
+      e.preventDefault();
+      const res = await signUp({...values});
+      console.log(res);
+      if(res.status === "error"){
+         throw new Error("error")
+      }
+    }
+    catch(e){
+
+    }
+  } 
+
+  
   const[values, Setvalues] = useState({
     fullname: "",
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
+    country: "",
   });
 
   const inputs = [
@@ -63,6 +81,13 @@ const Signup = () => {
       pattern: values.password,
       required:true
     },
+    {
+      id: 6,
+      name: 'country',
+      type: 'text', // Use 'select' for dropdown lists
+      label: 'Country',
+      required: true
+    }
   ]
 
   const onChange = (e) =>{
@@ -70,11 +95,9 @@ const Signup = () => {
       console.log(values)
   }
 
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-  }
+ 
   return (
-    <div className='container px-10 md:px-20 bg-darkBlack h-[1200px] w-[100%]'>
+    <div className='px-10 md:px-20 bg-darkBlack h-[1200px] w-[100%]'>
       <div className='wrapper bg-darkBlack'>
         <div className='flex pt-5'>
         <Globe size={40} className='text-Green pt-1' />
@@ -94,13 +117,13 @@ const Signup = () => {
             ))
           }  
 
-      <div className='flex flex-col'>
+      {/* <div className='flex flex-col'>
           <label>Account Type</label> 
           <select className='border-2 border-darkBlack p-3'>
             <option>First Timer</option>
             <option>Pro Trader</option>
           </select> 
-      </div>
+      </div> */}
           <button className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
 
           <p className='text-center text-[14px] pt-8'>Already have an account ?<Link to='/login' className='text-Green pl-3'>Login</Link></p>

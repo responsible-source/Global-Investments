@@ -8,7 +8,7 @@ import Img6 from '../../img/Online-chat-support.svg'
 
 const Services = () => {
   return (
-    <div className='container  bg-darkBlack mt-20 md:mt-0'>
+    <div className='bg-darkBlack mt-20 md:mt-0'>
         <div className='wrapper px-10 md:px-20'>
             <h1 className='text-center text-Green text-[40px] font-Encode py-5 '>Our Services</h1>
             <div className='card-container pb-10'>

@@ -14,6 +14,8 @@ import Cryptonews from  '../Cryptonews'
 import AboutVid from '../AboutVid'
 import Footer from '../Footer'
 import Partners from '../Partners'
+import FinlogixWidget from '../FinlogixWidget'
+import FinlogixTape from '../FinlogixTape'
 
 
 
@@ -31,10 +33,11 @@ const Home = () => {
     Setisopen(!isOpen)
   }
   return (
-    <div className='overflow-hidden'>
+    <div className='overflow-hidden w-[100%]'>
       <Sidebar toggle={toggle} isOpen={isOpen} Setisopen={Setisopen} />
         <Navbar toggle={toggle} />
         <Hero /> 
+        <FinlogixTape />
         <About />
         <AboutVid />
         <Entitled />
