@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Accounts = () => {
   return (
-    <div className='px-10 md:px-20 bg-darkBlack w-full h-[800px]'>
+    <div className='px-10 md:px-20 bg-darkBlack w-full h-screen'>
         <div className=' text-Green pt-10 flex'>
             <Link to='/deposit'>
             <ArrowLeft size={32} className='text-white' />

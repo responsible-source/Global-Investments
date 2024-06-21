@@ -1,31 +1,63 @@
-import React from 'react'
-import { useState } from 'react'
-import { Globe } from '@phosphor-icons/react/dist/ssr'
-import { Link } from 'react-router-dom'
-import Forminput from '../Forminput'
-import { signUp } from '../../../apis'
-import axios from 'axios'
+import React from 'react';
+import { useState } from 'react';
+import { Globe } from '@phosphor-icons/react/dist/ssr';
+import { Link, useNavigate } from 'react-router-dom';
+import Forminput from '../Forminput';
+import axios from '../../../axios';
 
+
+const SIGNUP_URL = '/register'
 
 const  Signup = () => {
+  let[errmsg, Seterrmsg] = useState(false);
 
+  const setMsg = () => {
+    setTimeout(() =>{
+        Seterrmsg("")
+    },15000);
+};
+
+  const navigate = useNavigate();
+ 
   const handleSubmit = async (e) =>{
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const formData = Object.fromEntries(form.entries());
+    let {first_name, last_name, username, email, password, country} = formData;
+    
+    
+    
     try{
-      e.preventDefault();
-      const res = await signUp({...values});
-      console.log(res);
-      if(res.status === "error"){
-         throw new Error("error")
-      }
+      // console.log(values);
+        const response = await axios.post(SIGNUP_URL, JSON.stringify( {first_name, last_name, username, email, password, country} ),{
+          headers:{'Content-Type':'application/json'},
+          withCredentials:true,
+        });
+        console.log(response);
+        const Newuser = response.data.data;
+        // console.log(Newuser);
+        localStorage.setItem("Newuser",JSON.stringify(Newuser))
+        Setvalues("");
+        if(response.data.status === 'success'){
+            navigate('/welcome')
+        }
+        
     }
-    catch(e){
-
+    catch(err){
+     console.log(err.response.data.message)
+     let errMessage = err.response.data.message
+     Seterrmsg(true);
+     Seterrmsg(errMessage)
+    //  if(err.message === 'Request failed with status code 400'){
+    //   Seterrmsg(true)
+    //  }
     }
   } 
 
   
-  const[values, Setvalues] = useState({
-    fullname: "",
+  let[values, Setvalues] = useState({
+    first_name: "",
+    last_name: "",
     username: "",
     email: "",
     password: "",
@@ -33,16 +65,28 @@ const  Signup = () => {
     country: "",
   });
 
+  const onChange = (e) =>{
+    Setvalues({...values,[e.target.name] : e.target.value })
+    
+}
+
   const inputs = [
     {
       id:1,
-      name: 'fullname',
+      name: 'first_name',
       type: 'text',
-      placeholder: 'Enter Full Name',
-      label: 'Full Name',
+      placeholder: 'Enter First Name',
+      label: 'First Name',
     },
     {
       id:2,
+      name: 'last_name',
+      type: 'text',
+      placeholder: 'Enter Last Name',
+      label: 'Last Name',
+    },
+    {
+      id:3,
       name: 'username',
       type: 'text',
       placeholder: 'Enter Username',
@@ -52,7 +96,7 @@ const  Signup = () => {
       required: true
     },
     {
-      id:3,
+      id:4,
       name: 'email',
       type: 'email',
       placeholder: 'Kindly Enter Email',
@@ -62,7 +106,7 @@ const  Signup = () => {
       required: true
     },
     {
-      id:4,
+      id:5,
       name: 'password',
       type: 'password',
       placeholder: 'Enter Password',
@@ -72,7 +116,7 @@ const  Signup = () => {
       required: true
     }, 
     {
-      id:5,
+      id:6,
       name: 'confirmPassword',
       type: 'password',
       placeholder: 'Confirm Password',
@@ -82,7 +126,7 @@ const  Signup = () => {
       required:true
     },
     {
-      id: 6,
+      id: 7,
       name: 'country',
       type: 'text', // Use 'select' for dropdown lists
       label: 'Country',
@@ -90,14 +134,11 @@ const  Signup = () => {
     }
   ]
 
-  const onChange = (e) =>{
-      Setvalues({...values,[e.target.name] : e.target.value })
-      console.log(values)
-  }
+  
 
  
   return (
-    <div className='px-10 md:px-20 bg-darkBlack h-[1200px] w-[100%]'>
+    <div className='px-10 py-10 md:px-20 bg-darkBlack h-auto w-[100%]'>
       <div className='wrapper bg-darkBlack'>
         <div className='flex pt-5'>
         <Globe size={40} className='text-Green pt-1' />
@@ -106,6 +147,7 @@ const  Signup = () => {
 
         <div className='grid mx-auto mt-[50px] bg-white w-[100%] md:w-[70%] rounded-lg'>
           <h3 className='text-Green font-Encode font-semibold text-[25px] text-center pt-14'>Welcome, Investor</h3>
+        <p className='text-center text-[18px] text-Red mt-5'>{errmsg}</p>
         <form onSubmit={handleSubmit} action="#" className='py-10 mx-10'>
           {
             inputs.map( input => (
@@ -124,7 +166,7 @@ const  Signup = () => {
             <option>Pro Trader</option>
           </select> 
       </div> */}
-          <button className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
+          <button onClick={setMsg()} className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
 
           <p className='text-center text-[14px] pt-8'>Already have an account ?<Link to='/login' className='text-Green pl-3'>Login</Link></p>
         </form>

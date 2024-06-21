@@ -25,13 +25,15 @@ const Sidebar = ({toggle, isOpen}) => {
                 <Link className='hover:text-Green transition duration-700 ease-in-out pb-20' to='/pricing'>Plans</Link>
             </li>
 
+            <div className='flex items-center justify-center gap-3 '>
             <li>
-            <Link className='bg-Green px-6 py-3 rounded-md hover:bg-white hover:text-darkBlack transition duration-700 ease-in-out transform hover:-translate-y-1 hover:scale-110 ' to='/signup'>Sign Up</Link>
+            <Link className='bg-Green px-3 py-3 rounded-md hover:bg-white hover:text-darkBlack transition duration-700 ease-in-out transform hover:-translate-y-1 hover:scale-110 ' to='/signup'>Sign Up</Link>
             </li>
 
             <li>
-            <Link className='bg-Green px-6 py-3 rounded-md hover:bg-white hover:text-darkBlack transition duration-700 ease-in-out transform hover:-translate-y-1 hover:scale-110 ' to='/login'>Login</Link>
+            <Link className='bg-Green px-5 py-3 rounded-md hover:bg-white hover:text-darkBlack transition duration-700 ease-in-out transform hover:-translate-y-1 hover:scale-110 ' to='/login'>Login</Link>
             </li>
+            </div>
             
         </ul>
         

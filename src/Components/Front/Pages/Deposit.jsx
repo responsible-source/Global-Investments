@@ -41,7 +41,7 @@ const Deposit = () => {
         <div>
           {
             Methods.map((item) => {
-              return <div>
+              return <div key ={item.id}>
                 <div className='flex justify-between items-center text-center py-5 border-b-2'>
                   {item.name}
                   <Link to='/accounts'>
