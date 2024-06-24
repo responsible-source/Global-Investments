@@ -34,7 +34,7 @@ const App = () => {
 
     setTimeout(()=>{
       Setloading(false)
-    }, 5000)
+    }, 8000)
   },[])
 
   const override = {

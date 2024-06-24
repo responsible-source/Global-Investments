@@ -59,7 +59,9 @@ const History = () => {
                                 <p className='text-[20px]'>-${user.amount}</p>
                                 <div className='py-3'>
                                 {user.status === 0 && <p className='text-yellow-400 pl-2 text-[16px]'>Pending</p>}
-                                {user.status === 1 && <p className='text-Green pl-2 text-[16px]'>Success</p>}
+
+                                {user.status === 1 && <p className='text-Green pl-2 text-[16px]'>Approved</p>} 
+
                                 {user.status === 2 && <p className='text-Red pl-2 text-[16px]'>Failed</p>}
                                 </div>
                                 <Link to='/wsn' className='cursor bg-darkBlack text-white rounded-md px-3 py-2 mt-5'>Resolve</Link>
