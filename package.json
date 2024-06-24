@@ -1,5 +1,6 @@
 {
   "name": "global-investments",
+  "homepage": "http://globaltradez.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
