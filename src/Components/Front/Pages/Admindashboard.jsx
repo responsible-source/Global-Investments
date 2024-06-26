@@ -1,9 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from '../../../axios';
 import AdminNavbar from '../AdminNavbar';
+// import EditUser from './EditUser';
+
 let USER_URL = '/users'
 let AMOUNT = '/useracctbal'
 
@@ -159,7 +161,7 @@ const Admindashboard = () => {
           </div>
         </div>
       )}
-   </div>
+  </div>
   )
 }
 
