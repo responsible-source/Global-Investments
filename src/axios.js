@@ -3,5 +3,5 @@ import axios from "axios";
 
 
 export default axios.create({
-    baseURL: "http://globaltradez.com/api"
+    baseURL: "https://globaltradez.com/api"
 });

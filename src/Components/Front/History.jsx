@@ -11,7 +11,7 @@ const userDetail = JSON.parse(localStorage.getItem("userDetails"));
 // let UserId = userDetail.id;
 
 
-const USER_TXN = `/transactions/{id}`
+const USER_TXN = `/mytransactions`
 
 const History = () => {
     const [ Details, Setdetails ] = useState([]);

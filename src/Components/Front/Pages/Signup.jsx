@@ -44,10 +44,11 @@ const  Signup = () => {
         
     }
     catch(err){
-     console.log(err.response.data.message)
-     let errMessage = err.response.data.message
-     Seterrmsg(true);
-     Seterrmsg(errMessage)
+      console.log(err)
+        console.log(err.response.data.message)
+        let errMessage = err.response.data.message
+        Seterrmsg(true);
+        Seterrmsg(errMessage)
     //  if(err.message === 'Request failed with status code 400'){
     //   Seterrmsg(true)
     //  }
