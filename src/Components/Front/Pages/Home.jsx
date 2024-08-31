@@ -45,7 +45,6 @@ const Home = () => {
         <Services />
         <Payment />
         <Pricing />
-        <Partners />
         <Testimonials />
         <Faq toggle={toggle} isOpen={isOpen}/>
         <Cryptonews />

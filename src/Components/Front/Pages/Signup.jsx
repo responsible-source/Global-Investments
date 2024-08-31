@@ -9,11 +9,23 @@ import axios from '../../../axios';
 const SIGNUP_URL = '/register'
 
 const  Signup = () => {
-  let[errmsg, Seterrmsg] = useState(false);
+  const [values, Setvalues] = useState({
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    country: ''
+  });
+
+  const [errors, setErrors] = useState({});
+
+  // let[errmsg, Seterrmsg] = useState(false);
 
   const setMsg = () => {
     setTimeout(() =>{
-        Seterrmsg("")
+        setErrors("")
     },15000);
 };
 
@@ -21,15 +33,32 @@ const  Signup = () => {
  
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    const newErrors = {};
+
+    if (!validateEmail(values.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (!validatePassword(values.password)) {
+      newErrors.password = 'Password must contain at least one uppercase letter, one number, and one special character.';
+    }
+
+    if (values.password !== values.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    } 
     const form = new FormData(e.target);
-    const formData = Object.fromEntries(form.entries());
-    let {first_name, last_name, username, email, password, country} = formData;
+    const formValue = Object.fromEntries(form.entries());
+    // let {first_name, last_name, username, email, password, country} = formValue;
     
-    
+    console.log(values);
     
     try{
-      // console.log(values);
-        const response = await axios.post(SIGNUP_URL, JSON.stringify( {first_name, last_name, username, email, password, country} ),{
+        const response = await axios.post(SIGNUP_URL, JSON.stringify(values),{
           headers:{'Content-Type':'application/json'},
           withCredentials:true,
         });
@@ -37,7 +66,7 @@ const  Signup = () => {
         const Newuser = response.data.data;
         // console.log(Newuser);
         localStorage.setItem("Newuser",JSON.stringify(Newuser))
-        Setvalues("");
+        // Setvalues("");
         if(response.data.status === 'success'){
             navigate('/welcome')
         }
@@ -47,99 +76,118 @@ const  Signup = () => {
       console.log(err)
         console.log(err.response.data.message)
         let errMessage = err.response.data.message
-        Seterrmsg(true);
-        Seterrmsg(errMessage)
+        // Seterrmsg(true);
+        // Seterrmsg(errMessage)
     //  if(err.message === 'Request failed with status code 400'){
     //   Seterrmsg(true)
     //  }
     }
   } 
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const handleChange = (e) => {
+    Setvalues({
+      ...values,
+      [e.target.id]: e.target.value
+    });
+  };
+
   
-  let[values, Setvalues] = useState({
-    first_name: "",
-    last_name: "",
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    country: "",
-  });
 
-  const onChange = (e) =>{
-    Setvalues({...values,[e.target.name] : e.target.value })
+  
+//   let[values, Setvalues] = useState({
+//     first_name: "",
+//     last_name: "",
+//     username: "",
+//     email: "",
+//     password: "",
+//     confirmPassword: "",
+//     country: "",
+//   });
+
+//   const onChange = (e) =>{
+//     Setvalues({...values,[e.target.name] : e.target.value })
     
-}
+// }
 
-  const inputs = [
-    {
-      id:1,
-      name: 'first_name',
-      type: 'text',
-      placeholder: 'Enter First Name',
-      label: 'First Name',
-    },
-    {
-      id:2,
-      name: 'last_name',
-      type: 'text',
-      placeholder: 'Enter Last Name',
-      label: 'Last Name',
-    },
-    {
-      id:3,
-      name: 'username',
-      type: 'text',
-      placeholder: 'Enter Username',
-      label: 'Username',
-      errorMessage: 'Username should be 3-16 letters and should not contain special characters',
-      pattern: '^[A-Za-z0-9]{3,16}$',
-      required: true
-    },
-    {
-      id:4,
-      name: 'email',
-      type: 'email',
-      placeholder: 'Kindly Enter Email',
-      label: 'Email',
-      errorMessage: 'Enter a valid email address',
-      pattern: '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ ',
-      required: true
-    },
-    {
-      id:5,
-      name: 'password',
-      type: 'password',
-      placeholder: 'Enter Password',
-      label: 'Enter Password',
-      errorMessage: 'Password should be 8-12 characters and include at least 1 letter, 1 number and it should include a special character',
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])([a-zA-Z0-9!@#$%^&*]){8,20}$`,
-      required: true
-    }, 
-    {
-      id:6,
-      name: 'confirmPassword',
-      type: 'password',
-      placeholder: 'Confirm Password',
-      label: 'Confirm Password',
-      errorMessage: "Password don't match",
-      pattern: values.password,
-      required:true
-    },
-    {
-      id: 7,
-      name: 'country',
-      type: 'text', // Use 'select' for dropdown lists
-      label: 'Country',
-      required: true
-    }
-  ]
+//   const inputs = [
+//     {
+//       id:1,
+//       name: 'first_name',
+//       type: 'text',
+//       placeholder: 'Enter First Name',
+//       label: 'First Name',
+//     },
+//     {
+//       id:2,
+//       name: 'last_name',
+//       type: 'text',
+//       placeholder: 'Enter Last Name',
+//       label: 'Last Name',
+//     },
+//     {
+//       id:3,
+//       name: 'username',
+//       type: 'text',
+//       placeholder: 'Enter Username',
+//       label: 'Username',
+//       errorMessage: 'Username should be 3-16 letters and should not contain special characters',
+//       pattern: '^[A-Za-z0-9]{3,16}$',
+//       required: true
+//     },
+//     {
+//       id:4,
+//       name: 'email',
+//       type: 'email',
+//       placeholder: 'Kindly Enter Email',
+//       label: 'Email',
+//       errorMessage: 'Enter a valid email address',
+//       pattern: '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ ',
+//       required: true
+//     },
+//     {
+//       id:5,
+//       name: 'password',
+//       type: 'password',
+//       placeholder: 'Enter Password',
+//       label: 'Enter Password',
+//       errorMessage: 'Password should be 8-12 characters and include at least 1 letter, 1 number and it should include a special character',
+//       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])([a-zA-Z0-9!@#$%^&*]){8,20}$`,
+//       required: true
+//     }, 
+//     {
+//       id:6,
+//       name: 'confirmPassword',
+//       type: 'password',
+//       placeholder: 'Confirm Password',
+//       label: 'Confirm Password',
+//       errorMessage: "Password don't match",
+//       pattern: values.password,
+//       required:true
+//     },
+//     {
+//       id: 7,
+//       name: 'country',
+//       type: 'text', // Use 'select' for dropdown lists
+//       label: 'Country',
+//       required: true
+//     }
+//   ]
 
   
 
  
   return (
-    <div className='px-10 py-10 md:px-20 bg-darkBlack h-auto w-[100%]'>
+    <div className='px-5 py-10 md:px-20 bg-darkBlack h-auto w-[100%]'>
       <div className='wrapper bg-darkBlack'>
         <div className='flex pt-5'>
         <Globe size={40} className='text-Green pt-1' />
@@ -148,9 +196,122 @@ const  Signup = () => {
 
         <div className='grid mx-auto mt-[50px] bg-white w-[100%] md:w-[70%] rounded-lg'>
           <h3 className='text-Green font-Encode font-semibold text-[25px] text-center pt-14'>Welcome, Investor</h3>
-        <p className='text-center text-[18px] text-Red mt-5'>{errmsg}</p>
-        <form onSubmit={handleSubmit} action="#" className='py-10 mx-10'>
-          {
+        {/* <p className='text-center text-[18px] text-Red mt-5'>{errmsg}</p> */}
+        <form onSubmit={handleSubmit} className='px-2 mt-5'>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+              First Name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="first_name"
+              type="text"
+              placeholder="First Name"
+              value={values.first_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="last_name"
+              type="text"
+              placeholder="Last Name"
+              value={values.last_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+              Username
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Username"
+              value={values.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.email ? 'border-red-500' : ''}`}
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={values.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={values.password}
+              onChange={handleChange}
+              required
+            />
+            {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
+              Confirm Password
+            </label>
+            <input
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${errors.confirmPassword ? 'border-red-500' : ''}`}
+              id="confirmPassword"
+              type='password'
+              value={values.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+            {errors.confirmPassword && <p className="text-red-500 text-xs italic">{errors.confirmPassword}</p>}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="country">
+              Country
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="country"
+              value={values.country}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Country</option>
+              <option value="USA">United States</option>
+              <option value="CAN">Canada</option>
+              <option value="UK">United Kingdom</option>
+              <option value="AUS">Australia</option>
+              <option value="IND">India</option>
+              <option value="NGA">Nigeria</option>
+              {/* Add more countries as needed */}
+            </select>
+          </div>
+           
+            <button  type='submit' className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
+
+          <p className='text-center text-[14px] py-8'>Already have an account ?<Link to='/login' className='text-Green pl-3'>Login</Link></p>
+        </form>
+        {/* <form onSubmit={handleSubmit} action="#" className='py-10 mx-10'> */}
+          {/* {
             inputs.map( input => (
               <Forminput
                 key={input.id} 
@@ -158,7 +319,7 @@ const  Signup = () => {
                 value={values[input.name]} 
                 onChange={onChange} />
             ))
-          }  
+          }   */}
 
       {/* <div className='flex flex-col'>
           <label>Account Type</label> 
@@ -167,12 +328,11 @@ const  Signup = () => {
             <option>Pro Trader</option>
           </select> 
       </div> */}
-          <button onClick={setMsg()} className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
-
-          <p className='text-center text-[14px] pt-8'>Already have an account ?<Link to='/login' className='text-Green pl-3'>Login</Link></p>
-        </form>
+          
+        {/* </form> */}
         </div>
       </div>
+      
     </div>
   )
 }

@@ -19,13 +19,18 @@ const Methods = [
     name: "Zelle",
     icon: <CaretRight size={32} />
   },
+  {
+    id:3,
+    name: "Cashapp",
+    icon: <CaretRight size={32} />
+  },
 ]
 
 const Deposit = () => {
   return (
     <div>
       <UserNavbar />
-      <div className='px-20 mt-10'>
+      <div className='px-10 md:px-20 mt-10'>
         <div className='flex justify-between items-center text-center py-5 border-b-2'>
           <p>Bitcoin</p>
           <Link to='/bitcoin'>

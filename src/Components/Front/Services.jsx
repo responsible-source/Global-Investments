@@ -10,7 +10,7 @@ const Services = () => {
   return (
     <div className='bg-darkBlack mt-20 md:mt-0'>
         <div className='wrapper px-10 md:px-20'>
-            <h1 className='text-center text-Green text-[40px] font-Encode py-5 '>Our Services</h1>
+            <h1 className='text-center text-Green text-[28px] md:text-[40px] font-Encode py-5 '>Our Services</h1>
             <div className='card-container pb-10'>
                 <div className='card-wrapper grid md:grid-cols-3 grid-rows-1  gap-5'>
                     <div className='card grid items-center justify-center mx-auto px-6 py-7 bg-white text-darkBlack rounded-md mt-2'>

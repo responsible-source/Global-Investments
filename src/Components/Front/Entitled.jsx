@@ -7,7 +7,7 @@ import animationData from '../../Animations/Bank-Animation.json'
 const Entitled = () => {
   return (
     <div className='Container h-[900px] md:h-[700px] w-100%'>
-        <h1 className='bg-darkBlack text-Green font-Encode text-[30px] md:text-[40px] text-center py-5'>What Our Clients Are Entitled To...</h1>
+        <h1 className='bg-darkBlack text-Green font-Encode text-[28px] md:text-[40px] text-center py-5'>What Our Clients Are Entitled To...</h1>
         <div className='wrapper bg-darkBlack text-white h-[900px] md:h-[700px] mt-0 mb-0 pt-20 px-10 md:px-20'>
             <div className='Entitle1 flex flex-col md:flex-row'>
                 <div className='texts'>
