@@ -104,8 +104,8 @@ const Login = () => {
             <div className='w-[100%] bg-darkBlack h-screen md:h-auto md:pb-5 '>
             <div className='wrapper  px-10 md:px-20'>
             <div className='flex pt-5'>
-            <Globe size={40} className='text-Green pt-1' />
-            <Link to='/' className='text-Green font-Encode text-[30px]'>Global Tradez</Link>
+            <Globe  className='text-Green pt-1 text-[24px] md:text-[40px]' />
+            <Link to='/' className='text-Green font-Encode text-[18px] md:text-[30px]'>Global Tradez</Link>
             </div>
         
             <form onSubmit={handleSubmit} className='flex flex-col mx-auto bg-white rounded-md w-[100%] md:w-[50%] mt-20 '>

@@ -190,8 +190,8 @@ const  Signup = () => {
     <div className='px-5 py-10 md:px-20 bg-darkBlack h-auto w-[100%]'>
       <div className='wrapper bg-darkBlack'>
         <div className='flex pt-5'>
-        <Globe size={40} className='text-Green pt-1' />
-        <Link to='/' className='text-Green font-Encode text-[30px]'>Global Tradez</Link>
+        <Globe  className='text-Green pt-1 text-[24px] md:text-[40px]' />
+        <Link to='/' className='text-Green font-Encode text-[18px] md:text-[30px]'>Global Tradez</Link>
         </div>
 
         <div className='grid mx-auto mt-[50px] bg-white w-[100%] md:w-[70%] rounded-lg'>

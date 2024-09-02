@@ -43,10 +43,10 @@ const Congratulations = () => {
        }
     }
   return (
-    <div className='wrapper px-1 md:px-20'>
+    <div className='wrapper h-auto w-[100%] px-1 md:px-20'>
         <div className='flex flex-col pt-20'>
             <h3 className='text-center text-[32px] font-Encode'>Congratulations</h3>
-            <div>
+            <div className='max-w-sm h-80 object-contain mx-auto'>
                 <Lottie animationData={animationData} loop={true} />
             </div>
             <div className='flex flex-col px-5 md:px-10 font-Encode text-[20px] text-center'>
