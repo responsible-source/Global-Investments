@@ -16,6 +16,7 @@ import Footer from '../Footer'
 import Partners from '../Partners'
 import FinlogixWidget from '../FinlogixWidget'
 import FinlogixTape from '../FinlogixTape'
+import JivoChat from '../JivoChat'
 
 
 
@@ -49,6 +50,7 @@ const Home = () => {
         <Faq toggle={toggle} isOpen={isOpen}/>
         <Cryptonews />
         <Footer />
+        <JivoChat />
     </div>
   )
 }
