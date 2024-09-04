@@ -47,7 +47,7 @@ const Home = () => {
         <Pricing />
         <Testimonials />
         <Faq toggle={toggle} isOpen={isOpen}/>
-        {/* <Cryptonews /> */}
+        <Cryptonews />
         <Footer />
     </div>
   )
