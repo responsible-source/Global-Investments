@@ -17,7 +17,7 @@ const Footer = () => {
       <p class="text-sm font-Encode">
         Contact us: <a href="mailto:contact@example.com" class="underline">financialglobalmanagement@gmail.com</a>
       </p>
-    </div>
+     </div>
 
     
     <div class="text-center md:text-right">
