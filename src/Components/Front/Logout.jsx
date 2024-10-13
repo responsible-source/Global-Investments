@@ -42,7 +42,7 @@ const Logout = () => {
 
   return (
     <div>
-        <button onClick={handleLogout} className='flex items-center justify-center mx-auto text-center px-14 py-3 bg-Green rounded-md text-white mt-0 p-3 w-[50%] transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block' >Logout</button>
+        <button onClick={handleLogout} className='flex items-center justify-center mx-auto text-center px-14 py-3 bg-Green rounded-md text-white mt-0 p-3 w-[100%] md:block' >Logout</button>
     </div>
   )
 }

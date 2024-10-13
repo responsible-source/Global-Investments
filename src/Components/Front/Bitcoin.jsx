@@ -38,8 +38,8 @@ const Bitcoin = () => {
         </div>
 
         <div className='bg-darkBlack text-white rounded-lg mt-8 px-5 py-3'>
-          <p>Send only Bitcoin (BTC) to this address.</p>
-          <p>Sending any other coins may result in permanent loss.</p>
+          <p className='text-[10px] md:text-[14px] lg:text-[16px]'>Send only Bitcoin (BTC) to this address.</p>
+          <p className='text-[10px] md:text-[14px] lg:text-[16px]'>Sending any other coin may result in permanent loss.</p>
         </div>
        </div>
     </div>

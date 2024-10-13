@@ -21,9 +21,9 @@ const Hero = () => {
         </div>
        
         
-        <div className='absolute top-0 left-0 w-[100%] h-full flex flex-col md:flex-row items-center justify-center md:px-20 px-10'>
-            <div className='text-white font-Encode'>
-            <h1 className='text-2xl md:text-3xl'>BINARY OPTIONS, CFDs & FOREX TRADING MADE EASY</h1>
+        <div className='absolute top-0 left-0 w-[100%] h-full flex flex-col md:flex-row items-center justify-center px-5 md:px-10 lg:px-20'>
+            <div className='text-white font-Encode '>
+            <h1 className='text-2xl md:text-3xl overflow-hidden'>BINARY OPTIONS, CFDs & FOREX TRADING MADE EASY</h1>
             <p className='text-1.8xl pt-3'>The Simplest and Most Powerful Trading Platform</p>
             <p className='text-[12px] pt-2 pb-5'>Sign Up for a new account and recieve 10% cashback on your first deposit to your trading account</p>
             <Link className='flex items-center gap-5 w-[160px] bg-Green text-darkBlack rounded-md p-2' to='/signup' onMouseEnter={toggle} onMouseLeave={toggle} >Get Started {hover ? <ArrowCircleRight size='25px' /> : <ArrowRight size='25px' /> }</Link>

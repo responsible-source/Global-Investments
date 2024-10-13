@@ -18,6 +18,7 @@ const BankWithdraw = () => {
   const [ routing_number, SetroutNum ] = useState('');
   const [ errMsg, Seterrmsg ] = useState(false);
   const [ invalid, Setinvalid ] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   const setMsg = () => {
     setTimeout(() =>{
@@ -30,6 +31,7 @@ const BankWithdraw = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    setLoading(true);
     
     const form = new FormData(e.target);
     const formData = Object.fromEntries(form.entries());
@@ -67,11 +69,14 @@ const BankWithdraw = () => {
       // if(err.message === 'Request failed with status code 422'){
       //   Setinvalid(true);
       // }
-    }
+    }finally {
+      setLoading(false); // Reset loading state regardless of success or failure
+  }
   }
   return (
-     <div className='px-10 md:px-20 bg-darkBlack h-[950px] md:h-auto w-full'>
-        <div className='pt-9 flex'>
+     <div className='px-10 md:px-20 bg-darkBlack h-auto md:h-screen lg:h-auto w-full'>
+      <div className='pb-20'>
+      <div className='pt-9 flex'>
         <Link to='/withdrawal'>
         <ArrowLeft size={32} className='text-white' />
         </Link>
@@ -114,10 +119,18 @@ const BankWithdraw = () => {
                     <label htmlFor="#" className='font-Encode text-white'>Routing Number/SWIFT code</label>
                     <input type="text" placeholder='Enter Routing Number' className='block w-[100%] md:w-[90%] h-[40px] border border-gray-500 p-3' name='routing_number' value={routing_number} onChange={(e) => SetroutNum(e.target.value)} /> 
                     </div>
-                    <button onClick={setMsg} type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[30%] text-center flex mx-auto  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>Transfer</button>
+                    <button onClick={setMsg} type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[30%] text-center flex mx-auto  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>
+                    {loading ? (
+                                <div className="loader"> {/* Ensure this loader is styled in your CSS */} </div>
+                            ) : (
+                                "Transfer"
+                            )}
+                    </button>
                 </form>
                
             </div>
+      </div>
+       
      </div>
   )
 }

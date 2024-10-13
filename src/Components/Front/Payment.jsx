@@ -5,7 +5,7 @@ import Img2 from '../../img/appstore.svg'
 const Payment = () => {
   return (
     <div className=' bg-darkBlack pt-32 pb-20'>
-        <div className='wrapper px-5 md:px-20 '>
+        <div className='wrapper px-5 md:px-10 lg:px-20 '>
             <h3 className='text-Green text-[24px] font-bold font-Encode pb-10'>Invest anywhere, anytime!</h3>
             <p className='text-white text-[18px] font-Encode leading-10'>We are an international investment firm with over 21 years of cumulative experience in the investment advisory industry. Our advisory investment strategy are driven by the extensive expertise and we adopt the highest standards of risk management and both fundamental and technical analysis. We use several diversified strategies and tools all with intent to minimize risk and maximize profits. We are distinguished by the integrity of our offering, our transparency, and our exceptional performance.</p>
 

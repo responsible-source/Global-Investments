@@ -3,7 +3,7 @@ import Img1 from '../../img/AboutAd.jpeg';
 
 const About = () => {
   return (
-    <div className='About px-5 md:px-20 mt-0 bg-white h-600px w-100%'>
+    <div className='About px-5 md:px-10 lg:px-20 mt-0 bg-white h-600px w-100%'>
         <div className='Wrapper flex flex-col md:flex-row gap-5 font-Encode py-20'>
             <div className='w-[40%] hidden md:block'>
                 <img src={Img1} alt="company" className='w-[100%] h-full object-fill' />

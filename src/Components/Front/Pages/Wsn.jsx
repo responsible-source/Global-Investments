@@ -11,6 +11,7 @@ const VALIDATE = '/tokenValid'
 const Wsn = () => {
   const [ token , Settoken ] = useState();
   const [ invalid, Setinvalid ] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   // const setMsg = () => {
   //   setTimeout(() =>{
@@ -25,6 +26,7 @@ const Wsn = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    setLoading(true); 
     const form = new FormData(e.target);
     const formData = Object.fromEntries(form.entries());
     let { id, token } = formData;
@@ -64,11 +66,14 @@ const Wsn = () => {
       // if(err.message === 'Request failed with status code 422'){
       //   Setinvalid(true);
       // }
-    }
+    }finally {
+      setLoading(false); // Reset loading state regardless of success or failure
+  }
+  
   }
   return (
-    <div className='wrapper bg-darkBlack h-[950px] md:h-[600px]'>
-        <div className='px-10 md:px-20 pt-10'>
+    <div className='wrapper bg-darkBlack h-[950px] md:h-screen lg:h-auto'>
+        <div className='px-10 md:px-20 pt-10 pb-20'>
         <div>
             <Link to='/withdrawal'>
             <ArrowLeft size={32} className='text-white' />
@@ -93,7 +98,13 @@ const Wsn = () => {
                     <div className='flex gap-10'>
                     <Link to='/history' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[50%] text-center  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>Get WSN</Link>
 
-                    <button type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[50%] text-center  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>Send Amount</button>
+                    <button type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[50%] text-center  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>
+                    {loading ? (
+                                <div className="loader"> {/* Ensure this loader is styled in your CSS */} </div>
+                            ) : (
+                                "Complete Transfer"
+                            )}
+                    </button>
                     </div>
                 </form>
                

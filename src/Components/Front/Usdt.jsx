@@ -37,8 +37,8 @@ const Usdt = () => {
         </div>
 
         <div className='bg-darkBlack text-white rounded-lg mt-8 px-5 py-3'>
-          <p>Send only USDT to this address.</p>
-          <p>Sending any other coins may result in permanent loss.</p>
+          <p className='text-[10px] md:text-[14px] lg:text-[16px]'>Send only USDT to this address.</p>
+          <p className='text-[10px] md:text-[14px] lg:text-[16px]'>Sending any other coins may result in permanent loss.</p>
         </div>
        </div>
     </div>

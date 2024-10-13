@@ -7,7 +7,7 @@ import animationData from '../../Animations/Profit-Anime.json'
 const Continuation = () => {
   return (
     <div>
-        <div className='wrapper bg-white h-[900px] md:h-[800px] mt-0 pt-20 px-10 md:px-20'>
+        <div className='wrapper bg-white h-[900px] md:h-[800px] mt-0 pt-20 px-5 md:px-10 lg:px-20'>
             <div className='Entitle1 flex flex-col-reverse md:flex-row gap-4'>
             <div className='animation pt-[90px] md:pt-0 md:w-[40%]'>
                     <Lottie animationData={animationData} loop={true} />

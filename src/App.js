@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SyncLoader from "react-spinners/SyncLoader";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import './App.css';
 import Bitcoin from './Components/Front/Bitcoin';
 import Accounts from './Components/Front/Pages/Accounts';
 import BankWithdraw from './Components/Front/Pages/BankWithdraw';
@@ -17,9 +18,10 @@ import Profile from './Components/Front/Pages/Profile';
 import Wsn from './Components/Front/Pages/Wsn';
 import Usdt from './Components/Front/Usdt';
 import Admindashboard from './Components/Front/Pages/Admindashboard';
-import EditUser from './Components/Front/Pages/EditUser';
+// import EditUser from './Components/Front/Pages/EditUser';
 import UserTxs from './Components/Front/Pages/UserTxs';
 import History from './Components/Front/History';
+ 
 
 
 
@@ -77,7 +79,7 @@ const App = () => {
        <Route path='/congratulations' element={<Congratulations />}/>
        <Route path='/wsn' element={<Wsn />}/>
        <Route path='/admindashboard' element={<Admindashboard />}/>
-       <Route path='/edituser' element={<EditUser />}/>
+       {/* <Route path='/edituser' element={<EditUser />}/> */}
        <Route path='/usertxn' element={<UserTxs />}/>
        <Route path='/history' element={<History />}/>
      </Routes>

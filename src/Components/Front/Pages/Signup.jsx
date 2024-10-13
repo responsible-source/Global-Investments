@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Globe } from '@phosphor-icons/react/dist/ssr';
 import { Link, useNavigate } from 'react-router-dom';
-import Forminput from '../Forminput';
 import axios from '../../../axios';
 
 
@@ -20,6 +19,7 @@ const  Signup = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); 
 
   // let[errmsg, Seterrmsg] = useState(false);
 
@@ -33,6 +33,7 @@ const  Signup = () => {
  
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    setLoading(true); 
     const newErrors = {};
 
     if (!validateEmail(values.email)) {
@@ -81,7 +82,9 @@ const  Signup = () => {
     //  if(err.message === 'Request failed with status code 400'){
     //   Seterrmsg(true)
     //  }
-    }
+    }finally {
+      setLoading(false); // Reset loading state regardless of success or failure
+  }
   } 
 
   const validateEmail = (email) => {
@@ -187,14 +190,14 @@ const  Signup = () => {
 
  
   return (
-    <div className='px-5 py-10 md:px-20 bg-darkBlack h-auto w-[100%]'>
+    <div className='px-5 py-5 md:px-10 lg:px-20 bg-darkBlack h-auto md:h-screen lg:h-auto w-[100%]'>
       <div className='wrapper bg-darkBlack'>
         <div className='flex pt-5'>
         <Globe  className='text-Green pt-1 text-[24px] md:text-[40px]' />
         <Link to='/' className='text-Green font-Encode text-[18px] md:text-[30px]'>Global Tradez</Link>
         </div>
 
-        <div className='grid mx-auto mt-[50px] bg-white w-[100%] md:w-[70%] rounded-lg'>
+        <div className='grid mx-auto mt-[50px] bg-white w-[100%] md:w-[100%] lg:w-[70%] rounded-lg'>
           <h3 className='text-Green font-Encode font-semibold text-[25px] text-center pt-14'>Welcome, Investor</h3>
         {/* <p className='text-center text-[18px] text-Red mt-5'>{errmsg}</p> */}
         <form onSubmit={handleSubmit} className='px-2 mt-5'>
@@ -296,61 +299,62 @@ const  Signup = () => {
               required
             >
               <option value="">Select Country</option>
-              <option value="USA">United States</option>
-              <option value="CAN">Canada</option>
-              <option value="UK">United Kingdom</option>
-              <option value="AUS">Australia</option>
-              <option value="IND">India</option>
-              <option value="NGA">Nigeria</option>
-            <option value="DEU">Germany</option>
-            <option value="FRA">France</option>
-            <option value="BRA">Brazil</option>
-            <option value="CHN">China</option>
-            <option value="JPN">Japan</option>
-            <option value="MEX">Mexico</option>
-            <option value="ITA">Italy</option>
-            <option value="ESP">Spain</option>
-            <option value="RUS">Russia</option>
-            <option value="ZAF">South Africa</option>
-            <option value="KOR">South Korea</option>
-            <option value="SAU">Saudi Arabia</option>
-            <option value="ARG">Argentina</option>
-            <option value="TUR">Turkey</option>
-            <option value="EGY">Egypt</option>
-            <option value="IDN">Indonesia</option>
-            <option value="SGP">Singapore</option>
-            <option value="SWE">Sweden</option>
-            <option value="CHE">Switzerland</option>
-            <option value="NLD">Netherlands</option>
-            <option value="POL">Poland</option>
-            <option value="NOR">Norway</option>
-            <option value="DNK">Denmark</option>
-            <option value="BEL">Belgium</option>
-            <option value="PHL">Philippines</option>
-            <option value="THA">Thailand</option>
-            <option value="MYS">Malaysia</option>
-            <option value="VNM">Vietnam</option>
-            <option value="NZL">New Zealand</option>
-            <option value="GRC">Greece</option>
-            <option value="IRL">Ireland</option>
-            <option value="ISR">Israel</option>
-            <option value="PRT">Portugal</option>
-            <option value="HUN">Hungary</option>
-            <option value="FIN">Finland</option>
-            <option value="AUT">Austria</option>
-            <option value="CHL">Chile</option>
-            <option value="ROU">Romania</option>
-            <option value="COL">Colombia</option>
-            <option value="ZWE">Zimbabwe</option>
-            <option value="KAZ">Kazakhstan</option>
-            <option value="PAK">Pakistan</option>
-            <option value="BGD">Bangladesh</option>
-            <option value="KEN">Kenya</option>
+              <option value="ARG">Argentina</option>
+<option value="AUS">Australia</option>
+<option value="AUT">Austria</option>
+<option value="BGD">Bangladesh</option>
+<option value="BRA">Brazil</option>
+<option value="CAN">Canada</option>
+<option value="CHL">Chile</option>
+<option value="CHN">China</option>
+<option value="DNK">Denmark</option>
+<option value="EGY">Egypt</option>
+<option value="FIN">Finland</option>
+<option value="FRA">France</option>
+<option value="GRC">Greece</option>
+<option value="DEU">Germany</option>
+<option value="HUN">Hungary</option>
+<option value="IND">India</option>
+<option value="IRL">Ireland</option>
+<option value="ISR">Israel</option>
+<option value="IDN">Indonesia</option>
+<option value="ITA">Italy</option>
+<option value="KEN">Kenya</option>
+<option value="KOR">South Korea</option>
+<option value="KAZ">Kazakhstan</option>
+<option value="MYS">Malaysia</option>
+<option value="MEX">Mexico</option>
+<option value="NGA">Nigeria</option>
+<option value="NLD">Netherlands</option>
+<option value="NZL">New Zealand</option>
+<option value="PAK">Pakistan</option>
+<option value="PHL">Philippines</option>
+<option value="POL">Poland</option>
+<option value="PRT">Portugal</option>
+<option value="RUS">Russia</option>
+<option value="SGP">Singapore</option>
+<option value="SWE">Sweden</option>
+<option value="CHE">Switzerland</option>
+<option value="THA">Thailand</option>
+<option value="TUR">Turkey</option>
+<option value="UGA">Uganda</option>
+<option value="USA">United States</option>
+<option value="UK">United Kingdom</option>
+<option value="VNM">Vietnam</option>
+<option value="ZAF">South Africa</option>
+<option value="ZWE">Zimbabwe</option>
+
               {/* Add more countries as needed */}
             </select>
           </div>
            
-            <button  type='submit' className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>Submit</button>
+            <button  type='submit' className='bg-darkBlack text-white py-3 px-12 mt-5 flex items-center justify-center mx-auto hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:block'>
+            {loading ? (
+                                <div className="loader"> {/* Ensure this loader is styled in your CSS */} </div>
+                            ) : (
+                                "Submit"
+                            )}
+            </button>
 
           <p className='text-center text-[14px] py-8'>Already have an account ?<Link to='/login' className='text-Green pl-3'>Login</Link></p>
         </form>

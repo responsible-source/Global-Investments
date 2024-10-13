@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Hero from '../Hero'
 import Navbar from '../Navbar'
-import Sidebar from '../Sidebar'
+// import Sidebar from '../Sidebar'
 import About from '../About'
 import Entitled from '../Entitled'
 import Continuation from '../Continuation'
@@ -13,8 +13,8 @@ import Faq from '../Faq'
 import Cryptonews from  '../Cryptonews'
 import AboutVid from '../AboutVid'
 import Footer from '../Footer'
-import Partners from '../Partners'
-import FinlogixWidget from '../FinlogixWidget'
+// import Partners from '../Partners'
+// import FinlogixWidget from '../FinlogixWidget'
 import FinlogixTape from '../FinlogixTape'
 import JivoChat from '../JivoChat'
 
@@ -35,17 +35,17 @@ const Home = () => {
   }
   return (
     <div className='overflow-hidden w-[100%]'>
-      <Sidebar toggle={toggle} isOpen={isOpen} Setisopen={Setisopen} />
+      {/* <Sidebar toggle={toggle} isOpen={isOpen} Setisopen={Setisopen} /> */}
         <Navbar toggle={toggle} />
-        <Hero /> 
+        <div id='home'><Hero /></div>
         <FinlogixTape />
-        <About />
+        <div id='about'><About /></div>
         <AboutVid />
         <Entitled />
         <Continuation />
-        <Services />
+        <div id='services'><Services /></div>
         <Payment />
-        <Pricing />
+        <div id='pricing'><Pricing /></div>
         <Testimonials />
         <Faq toggle={toggle} isOpen={isOpen}/>
         <Cryptonews />

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Welcome = () => {
   let data = JSON.parse(localStorage.getItem("Newuser"));
   return (
-    <div className='bg-darkBlack h-auto w-[100%]'>
+    <div className='bg-darkBlack h-auto md:h-screen lg:h-auto w-[100%]'>
       <div className='flex flex-col justify-center items-center py-12 mx-auto h-auto'>
         <div className=' text-white text-center space-y-4 my-[40px]'>
         <h3 className='text-[20px] font-Encode font-semibold px-10 uppercase'>CONGRATULATIONS!!! INVESTOR {`${data.username}`} </h3>

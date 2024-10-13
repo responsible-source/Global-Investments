@@ -14,6 +14,8 @@ const CryptoWithdrawal = () => {
   const [ wallet_address, Setaddress ] = useState('');
   const [ errMsg, SeterrMsg ] = useState(false);
   const [ invalid, Setinvalid ] = useState(false);
+  const [loading, setLoading] = useState(false); 
+
   const navigate = useNavigate()
 
   const setMsg = () => {
@@ -25,6 +27,7 @@ const CryptoWithdrawal = () => {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
+    setLoading(true); 
     const form = new FormData(e.target);
     const formData = Object.fromEntries(form.entries());
     let { amount, wallet_address } = formData;
@@ -61,11 +64,14 @@ const CryptoWithdrawal = () => {
       // if(err.message === 'Request failed with status code 422'){
       //   Setinvalid(true);
       // }
-    }
+    }finally {
+      setLoading(false); // Reset loading state regardless of success or failure
+  }
+  
   }
   
   return (
-     <div className='px-5 md:px-20 bg-darkBlack h-[950px] md:h-[600px] w-full'>
+     <div className='px-5 md:px-20 bg-darkBlack h-[950px] md:h-screen lg:h-[600px] w-full'>
         <div className='pt-9 flex'>
         <Link to='/withdrawal'>
         <ArrowLeft size={32} className='text-white' />
@@ -89,7 +95,13 @@ const CryptoWithdrawal = () => {
                     <input type="text" name='wallet_address' value={wallet_address} onChange={(e) => Setaddress(e.target.value)} placeholder='Enter Wallet Address Carefully' className='block p-3 w-[100%] md:w-[90%] h-[40px] border border-gray-500' autoComplete='off' />
                     </div>
 
-                    <button onClick={setMsg()} type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[50%] text-center  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>Send Coin</button>
+                    <button onClick={setMsg()} type='submit' className='bg-Green text-darkBlack font-Encode mt-5 p-3 rounded-md w-[50%] text-center  hover:bg-Green hover:text-darkBlack transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110  md:block'>
+                    {loading ? (
+                                <div className="loader"> {/* Ensure this loader is styled in your CSS */} </div>
+                            ) : (
+                                "Transfer"
+                            )}
+                    </button>
                 </form>
                
             </div>

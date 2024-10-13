@@ -1,24 +1,45 @@
 import React from 'react'
 import UserNavbar from '../UserNavbar'
-import { AlignBottom, Certificate, CurrencyCircleDollar, Percent, PaperPlaneTilt, HandCoins, CoinVertical  } from '@phosphor-icons/react'
+import { AlignBottom, Certificate, CurrencyCircleDollar, Percent, } from '@phosphor-icons/react'
 import FinlogixWidget from '../FinlogixWidget'
-import FinlogixTape from '../FinlogixTape'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
 import axios from '../../../axios'
 
 
-let User_details = '/users/{id}'
+let User_Profile = '/userprofile'
 
 const UserDashboard = () => {
   let data = JSON.parse(localStorage.getItem('userDetails'));
   // console.log(data)
   let accountType = data.account_type
+  const token = JSON.parse(localStorage.getItem("token"));
+  let [money, Setmoney] = useState("0")
+
+  useEffect(() => {
+    const getDetails = async () =>{
+      try{
+        const response = await axios.get(User_Profile,{
+          headers:{
+            Authorization:`Bearer ${token}`,
+            "Content-Type":"application/json"
+          }
+        })
+        console.log(response)
+        let balance = response.data.data.account_balance
+        console.log(balance)
+        Setmoney(balance)
+      }
+      catch(err){
+      console.log(err)
+      }
+    }
+    getDetails()
+  }, [])
     return (
       <>
           <UserNavbar  />
-          <div className='bg-darkBlack h-[1000px] md:h-[800px] w-[100%]'>
+          <div className='bg-darkBlack h-auto md:h-screen lg:h-[800px] w-[100%]'>
             <div className='px-10 md:px-20 w-[100%] '>
             <h3 className='pt-5 text-[24px] font-Encode text-white'>Welcome, Investor {`${data.username}`}</h3>
             <div className='flex gap-2 bg-Green rounded-md w-[250px] p-2 mt-2'>
@@ -45,7 +66,7 @@ const UserDashboard = () => {
                 <p className=' text-[20px] md:text-[20px]'>Available Balance</p>
                 </div>
                 <div className='py-5'>
-                <p className='text-[18px] font-Encode font-semibold pl-5'>$ {`${data.account_balance}`}</p>
+                <p className='text-[18px] font-Encode font-semibold pl-5'>$ {`${money}`}</p>
                 </div>
               </div>
   

@@ -4,24 +4,24 @@ import { Globe } from '@phosphor-icons/react';
 
 const Footer = () => {
   return (
-    <footer class="bg-gray-800 text-white py-4">
-  <div class="container mx-auto flex flex-col items-center justify-between md:flex-row">
+    <footer className="bg-gray-800 text-white py-4">
+  <div class="container mx-auto flex flex-col items-center justify-between md:flex-row px-5">
 
-    <div class="mb-2 md:mb-0">
+    <div className="mb-2 md:mb-0">
     <div className='text-Green'>
-           <Link className='text-[14px] md:text-[18px] font-Encode flex'><Globe className='text-[18px] md:text-[24px]'/>Global Tradez</Link>
+           <Link className='text-[14px] md:text-[14px] font-Encode flex'><Globe className='text-[18px] md:text-[18px] lg:text-[24px]'/>Global Tradez</Link>
             </div>
     </div>
 
-    <div class="mb-2 md:mb-0 text-center">
-      <p class="text-sm font-Encode">
+    <div className="mb-2 md:mb-0 text-center">
+      <p className="text-sm md:text-[12px] lg:text-sm font-Encode">
         Contact us: <a href="mailto:contact@example.com" class="underline">financialglobalmanagement@gmail.com</a>
       </p>
      </div>
 
     
-    <div class="text-center md:text-right">
-      <p class="text-sm font-Encode">&copy; 2024 Global Tradez. All rights reserved.</p>
+    <div className="text-center md:text-right">
+      <p className="text-sm md:text-[12px] lg:text-sm font-Encode">&copy; 2024 Global Tradez. All rights reserved.</p>
     </div>
   </div>
 </footer>
